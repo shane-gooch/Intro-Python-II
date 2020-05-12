@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -38,14 +38,33 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player_one = Player("Bobby Smith", room["outside"])
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+
+is_active = True
+count += 1
+while is_active:
+    # Handle Exception
+    try:
+        # Print info
+        print(player_one.get_name() + " is in \"",
+              player_one.get_current_room().get_name() + "\"\n")
+        print(player_one.get_current_room().get_description() + "\n")
+        print(player_one.get_name(), " please enter a command: " +
+              "\n[n]: North\n[w]: West\n[e]: East\n[s]: South")
+        # Handle user input
+        command = input().lower()
+
+        # Control flow for command
+        if command in ["n", "s", "e", "w"]:
+            player_one.move_player(command)
+        elif command == "q":
+            print("Ending game for " + player_one.get_name())
+            is_active = False
+        else:
+            print("Invalid Command - Try again")
+            continue
+
+    except AttributeError:
+        print("Unable to move in that direction")
+        break
