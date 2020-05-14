@@ -1,11 +1,13 @@
 
 class Item():
-    def __init__(self, name, description):
+    def __init__(self, name):
         self.__name = name
-        self.__description
 
     def get_name(self):
         return self.__name
 
-    def get_description(self):
-        return self.__description
+    def on_take(self):
+        return f"\nYou have picked up a {self.__name}"
+
+    def on_drop(self):
+        return f"\nYou have dropped a {self.__name}"
