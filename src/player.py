@@ -50,4 +50,4 @@ class Player():
 
     def get_inventory(self):
         for i in self.__items:
-            print(f"{self.__name} has the following items: \n{i.get_name().}")
+            print(f"{self.__name} has the following items: \n{i.get_name()}")
